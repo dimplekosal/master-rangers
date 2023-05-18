@@ -5,16 +5,22 @@ var canvas= new fabric.Canvas('myCanvas')
 block_image_width = 350;
 block_image_height = 430;
 
-var block_image_object= "";
+var player_object= "";
 
 function new_image(get_image)
 {
-	block_image_height=block_image_width+10;
-    block_image_height=block_image_height+10;
-    document.getElementById("current_width").innerHTML=block_image_height
-    document.getElementById("current_width").innerHTML=block_image_width
+	fabric.Image.fromURL(get_image, function(Img) {
+        player_object = Img;
+        player_object.scaleToWidth(block_image_width);
+        player_object.scaleToHeight(block_image_height);
+        player_object.set({
+            top: block_y,
+            left: block_x
+        });
+        canvas.add(player_object);
+    });
 }
-}
+
 
 window.addEventListener("keydown", my_keydown);
 
@@ -25,29 +31,29 @@ console.log(keyPressed);
 
 	if(keyPressed == '82') 
 	{
-	
+		new_image('rr1.png');
 	}
 	if(keyPressed == '71')
 	{
 		block_x = 200;
-		// upload green ranger
+		new_image('gr.png');
 	}
 	
 	if(keyPressed == '89')
 	{
 		block_x =350;
-		// upload yellow ranger
+		new_image('yr.png');
 	}
+	
 	if(keyPressed == '80')
 	{
 		block_x = 600;
-		// upload pink ranger
+		new_image('pr.png');
 	}
 	if(keyPressed == '66')
 	{
-		block_x = 700;
-	// upload blue ranger
-	}
 	
-}
+	block_x = 700;
+	new_image('br.png'); 
+}}
 
